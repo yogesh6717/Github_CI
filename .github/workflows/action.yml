@@ -28,10 +28,14 @@ jobs:
 
       - name: Determine what next tag version will be
         uses: anothrNick/github-tag-action@1.36.0
-      - run: echo ${{ WITH_V }} this is version
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: false
-     
+           WITH_V: true
+      - name: set Output
+      - name: Set env
+        run: echo "RELEASE_VERSION=${WITH_V}" >> $GITHUB_ENV
+      - name: Test
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ env.RELEASE_VERSION }}
      
       
