@@ -28,6 +28,6 @@ jobs:
 
       - name: Determine what next tag version will be
         uses: anothrNick/github-tag-action@1.36.0
-      - run: ${{ github.event.release.tag_name }}
+      - run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
      
       
