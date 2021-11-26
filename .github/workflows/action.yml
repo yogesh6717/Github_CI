@@ -28,6 +28,6 @@ jobs:
 
       - name: Determine what next tag version will be
         uses: anothrNick/github-tag-action@1.36.0
-      - run: echo "TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+      - run: echo "TAG=${{ github.event.ref }}" >> $GITHUB_ENV
      
       
