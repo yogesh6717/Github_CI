@@ -25,6 +25,9 @@ jobs:
       # Determine what next tag version will be
       - name: Determine what next tag version will be
         uses: anothrNick/github-tag-action@1.36.0
+      - run: |
+          echo Below is the generated tag,
+          echo ${{ steps.get_version.outputs.new_tag }}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
