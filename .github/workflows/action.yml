@@ -28,6 +28,6 @@ jobs:
 
       - name: Determine what next tag version will be
         uses: anothrNick/github-tag-action@1.36.0
-      - run: echo This is the new version ${{ env.WITH_V }}
+      - run: echo This is the new version ${{ env.initial_version }}
      
       
