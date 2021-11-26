@@ -28,5 +28,5 @@ jobs:
 
       - name: Determine what next tag version will be
         uses: anothrNick/github-tag-action@1.36.0
-      - run: echo this is version ${WITH_V}
+      - run: echo this is version ${new_tag}
       
