@@ -23,7 +23,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout the repo
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
  
       # Determine what next tag version will be
       - name: Determine what next tag version will be
