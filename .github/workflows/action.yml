@@ -28,6 +28,5 @@ jobs:
 
       - name: Determine what next tag version will be
         uses: anothrNick/github-tag-action@1.36.0
-        env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-         WITH_V: true
+      - run: echo this is version ${WITH_V}
+      
