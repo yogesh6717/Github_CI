@@ -25,7 +25,9 @@ jobs:
       - uses: actions/checkout@main
         with:
           fetch-depth: '0'
-
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
       - name: Determine what next tag version will be
         uses: anothrNick/github-tag-action@1.36.0
       - run: echo -e "This is a tag ${pre_tag}
