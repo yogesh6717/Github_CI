@@ -27,7 +27,8 @@ jobs:
         uses: anothrNick/github-tag-action@1.36.0
       - run: |
           echo Below is the generated tag,
-          echo $WITH_V
+          echo This is the initial generated tag: ${{ steps.outputs.new_tag }},
+          echo This is the initial generated tag: ${{ steps.outputs.tag }}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
