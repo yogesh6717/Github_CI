@@ -28,6 +28,9 @@ jobs:
 
       - name: Determine what next tag version will be
         uses: anothrNick/github-tag-action@1.36.0
-      - run: echo "TAG=${{ github.event.ref }}" >> $GITHUB_ENV
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: false
+      - run: echo ${{ WITH_V }} this is version
      
       
