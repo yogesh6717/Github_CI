@@ -41,7 +41,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DRY_RUN: false
       - name: Update version
-        run: mvn -B versions:set -DnewVersion=v${{WITH_V}} -DgenerateBackupPoms=false
+        run: mvn -B versions:set -DnewVersion=v${{github.run_number}} -DgenerateBackupPoms=false
       - name: Publish to GitHub Packages Apache Maven
         run: mvn -B deploy -DskipTests --file pom.xml
         env:
@@ -52,5 +52,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}} 
         with: 
-          tag_name: ${{WITH_V}}
-          release_name: Release ${{WITH_V}} 
+          tag_name: ${{github.run_number}}
+          release_name: Release ${{github.run_number}} 
