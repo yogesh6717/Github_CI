@@ -40,4 +40,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DRY_RUN: false
-      
+      - name: Update version
+        run: mvn -B versions:set -DnewVersion=v${{WITH_V}} -DgenerateBackupPoms=false
+      - name: Publish to GitHub Packages Apache Maven
+        run: mvn -B deploy -DskipTests --file pom.xml
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          
+      - name: Create GitHub Release
+        uses: elgohr/Github-Release-Action@master
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}} 
+        with: 
+          tag_name: ${{WITH_V}}
+          release_name: Release ${{WITH_V}} 
