@@ -25,22 +25,22 @@ jobs:
       - uses: actions/checkout@main
         with:
           fetch-depth: '0'
-      - name: Determine what next tag version will be
+      - id: tag_version
         uses: anothrNick/github-tag-action@1.36.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
       - name: Update version
-        run: mvn -B versions:set -DnewVersion=v${{github.run_number}} -DgenerateBackupPoms=false
-      - name: Publish to GitHub Packages Apache Maven
-        run: mvn -B deploy -DskipTests --file pom.xml
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+        run: echo "Got tag name ${{ steps.tag_version.outputs.tag }}"
+#        run: mvn -B versions:set -DnewVersion=v${{github.run_number}} -DgenerateBackupPoms=false
+#       - name: Publish to GitHub Packages Apache Maven
+#         run: mvn -B deploy -DskipTests --file pom.xml
+#         env:
+#           GITHUB_TOKEN: ${{ github.token }}
           
-      - name: Create GitHub release
-        uses: elgohr/Github-Release-Action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-        with: 
-          tag_name: ${{github.run_number}}
-          release_name: Release ${{github.run_number}} 
+#       - name: Create GitHub release
+#         uses: elgohr/Github-Release-Action@master
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+#         with: 
+#           tag_name: ${{github.run_number}}
+#           release_name: Release ${{github.run_number}} 
