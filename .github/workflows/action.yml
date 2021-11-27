@@ -25,15 +25,6 @@ jobs:
       - uses: actions/checkout@main
         with:
           fetch-depth: '0'
-      - name: Set output
-        id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF##*/}
-      - name: Check output
-        env:
-          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-        run: |
-          echo $RELEASE_VERSION
-          echo ${{ github.run_number }}
       - name: Determine what next tag version will be
         uses: anothrNick/github-tag-action@1.36.0
       - run: echo $GITHUB_ENV
