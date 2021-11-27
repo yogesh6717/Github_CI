@@ -39,7 +39,7 @@ jobs:
       - run: echo $GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: false
+          WITH_V: true
       - name: Update version
         run: mvn -B versions:set -DnewVersion=v${{github.run_number}} -DgenerateBackupPoms=false
       - name: Publish to GitHub Packages Apache Maven
