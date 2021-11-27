@@ -7,6 +7,8 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
+    tags:
+     - 'v*' 
   pull_request:
     branches: [ main ]
 
@@ -17,16 +19,15 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@main
         with:
           fetch-depth: '0'
       - id: tag_version
         uses: anothrNick/github-tag-action@1.36.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: echo "Got tag name ${{ steps.tag_version.outputs.tag }}"
 #        run: mvn -B versions:set -DnewVersion=v${{github.run_number}} -DgenerateBackupPoms=false
 #       - name: Publish to GitHub Packages Apache Maven
