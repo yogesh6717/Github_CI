@@ -7,8 +7,7 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
-    tags:
-     - 'v*' 
+    
   pull_request:
     branches: [ main ]
 
@@ -28,6 +27,7 @@ jobs:
         uses: anothrNick/github-tag-action@1.36.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_BRANCHES: main
       - run: echo "Got the tag name ${{ steps.tag_version.outputs.tag }}"
 #        run: mvn -B versions:set -DnewVersion=v${{github.run_number}} -DgenerateBackupPoms=false
 #       - name: Publish to GitHub Packages Apache Maven
