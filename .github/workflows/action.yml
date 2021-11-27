@@ -26,9 +26,12 @@ jobs:
           fetch-depth: '0'
       - id: tag_version
         uses: anothrNick/github-tag-action@1.36.0
-        with:
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:          
           push: false
       - run: echo "Got the tag name ${{ steps.tag_version.outputs.tag }}"
+      - run: ls -a
 #        run: mvn -B versions:set -DnewVersion=v${{github.run_number}} -DgenerateBackupPoms=false
 #       - name: Publish to GitHub Packages Apache Maven
 #         run: mvn -B deploy -DskipTests --file pom.xml
