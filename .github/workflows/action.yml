@@ -36,7 +36,7 @@ jobs:
           echo ${{ github.run_number }}
       - name: Determine what next tag version will be
         uses: anothrNick/github-tag-action@1.36.0
-      - run: echo '::set-output name={tag}::${new_tag}'
+      - run: echo '::set-output name={tag}::${{ new_tag }}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DRY_RUN: false
