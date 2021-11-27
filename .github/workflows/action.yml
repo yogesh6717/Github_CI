@@ -33,7 +33,7 @@ jobs:
           RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
         run: |
           echo $RELEASE_VERSION
-          echo ${{ steps.vars.outputs.tag }}
+          echo ${{ github.run_number }}
       - name: Determine what next tag version will be
         uses: anothrNick/github-tag-action@1.36.0
       - run: echo -e "This is a tag ${pre_tag}
